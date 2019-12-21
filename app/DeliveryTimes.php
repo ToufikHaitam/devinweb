@@ -16,9 +16,8 @@ class DeliveryTimes extends Model
 
     public function deliverydates()
     {
-        return $this->belongsToMany(DeliveryDates::class,'delivery_time_delivery_date','delivery_time_id');
+        return $this->belongsToMany(DeliveryDates::class,'delivery_time_delivery_date','delivery_time_id','delivery_date_id');
     }
-
 
     public function city()
     {

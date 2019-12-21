@@ -23,6 +23,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('city/{city}/delivery-times', 'Api\CityController@attacheCityToDeliveryTime');
 Route::apiResource('city', 'Api\CityController');
 Route::apiResource('delivery-times', 'Api\DeliveryTimeController');
-Route::get('delivery-times/exclude','Api\DeliveryTimeController@excludeDeliveryTimesDate');
-Route::get('delivery-date/exclude/{id}','Api\DeliveryTimeController@excludeAllDeliveryTimesDate');
+Route::get('delivery_times/exclude','Api\DeliveryTimeController@excludetimestodate');
+Route::get('delivery_date/exclude/{id}','Api\DeliveryTimeController@excludeAllDeliveryTimesDate');
 Route::post('city/{city}/delivery-dates-times/{number}', 'Api\CityController@deliveryDates');

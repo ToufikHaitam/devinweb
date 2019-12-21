@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\DeliveryDates;
 use App\DeliveryTimes;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -36,6 +37,8 @@ class DeliveryTimeController extends Controller
      */
     public function store(Request $request)
     {
+
+
         $data =  $request->validate([
             'span' => 'required',
         ]);
@@ -47,10 +50,11 @@ class DeliveryTimeController extends Controller
     /**
      * this function to exclude de Delvirytimes to deliveryDates
      */
-public function excludeDeliveryTimesDate()
+public function excludetimestodate()
 {
+
     $delivery_time=DeliveryTimes::with('deliverydates')->find(1);
-    return $delivery_time->deliverydates()->detach([1,2]);
+    return $delivery_time->deliverydates()->detach([1,2,3]);
 
 }
 
@@ -58,13 +62,13 @@ public function excludeDeliveryTimesDate()
 
 public function excludeAllDeliveryTimesDate($id)
 {
-    $delivery_time=DeliveryTimes::with('deliverydates')->find($id);
+    $delivery_date=DeliveryDates::with('delivery_times')->find($id);
 
     //  if we want to delete records we can make this
     //$delivery_time->deliverydates()->delete();
     //$delivery_time->delete();
 
-    return $delivery_time->deliverydates()->detach();
+    return $delivery_date->delivery_times()->detach();
 
 }
     /**

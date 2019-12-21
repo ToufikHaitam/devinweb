@@ -36,8 +36,6 @@ class CityController extends Controller
 
 
     public function deliveryDates($city,$number){
-
-
         $cit=City::with('DeliveryDates')->findOrFail($city);
         return ['dates'=>$cit->DeliveryDates->take($number)];
 

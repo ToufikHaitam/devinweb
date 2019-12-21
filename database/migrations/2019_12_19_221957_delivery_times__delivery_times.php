@@ -22,7 +22,7 @@ class DeliveryTimesDeliveryTimes extends Migration
 
                     $table->unsignedBigInteger('delivery_date_id')->index();
                 $table->foreign('delivery_date_id')->references('id')
-                    ->on('delivery_date')->onDelete('cascade');
+                    ->on('delivery_dates')->onDelete('cascade');
 
         });
     }
