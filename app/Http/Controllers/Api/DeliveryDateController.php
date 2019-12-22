@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\DeliveryDates;
+use App\DeliveryTimes;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,7 @@ class DeliveryDateController extends Controller
      */
     public function index()
     {
-        //
+       return DeliveryDates::all();
     }
 
     /**
@@ -31,7 +32,7 @@ class DeliveryDateController extends Controller
 
 
      /**
-      * Exclude a city delivery date by excluding all of the daily delivery times 3 points 
+      * Exclude a city delivery date by excluding all of the daily delivery times 3 points
       */
       public function ExcludeDeliveryDate($id)
       {
@@ -59,7 +60,12 @@ class DeliveryDateController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data =  $request->validate([
+            'day_name' => 'required',
+            'date'=>'required'
+        ]);
+        return DeliveryDates::create($data);
+
     }
 
     /**

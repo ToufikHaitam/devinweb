@@ -15,14 +15,18 @@ class DatabaseSeeder extends Seeder
         // $this->call(UsersTableSeeder::class);
         $this->call(CityTableSeeder::class);
 
-        for($i=0;$i<7;$i++) {
-            \App\DeliveryTimes::updateOrCreate(['id' => $i, 'span' => $faker->numberBetween(10, 14) . "=>" . $faker->numberBetween(14, 19), 'city_id' => $faker->numberBetween(1, 3)]);
-         }
 
-        for($i=0;$i<6;$i++) {
-            $d=new \App\DeliveryDates(['id' => $i, 'day_name' => $faker->dayOfWeek(),'date' => $faker->dateTime, 'city_id' => $faker->numberBetween(1, 3)]);
+        for($i=0;$i<4;$i++) {
+            $city=$faker->numberBetween(1,3);
+            $d=new \App\DeliveryDates(['day_name' => $faker->dayOfWeek(),'date' => $faker->dateTime, 'city_id' => $city]);
             $d->saveOrFail();
-            $d->delivery_times()->attach($faker->numberBetween(1,6));
+
+            for($i=0;$i<$faker->numberBetween(1,3);$i++) {
+                  $t=new \App\DeliveryTimes(['span' => $faker->numberBetween(10, 14) . "=>" . $faker->numberBetween(14, 19), 'city_id' => $city]);
+                  $t->saveOrFail();
+                  $d->delivery_times()->attach($t);
+            }
+
         }
 
 

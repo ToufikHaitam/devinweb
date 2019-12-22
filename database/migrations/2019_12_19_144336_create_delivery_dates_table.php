@@ -18,7 +18,7 @@ class CreateDeliveryDatesTable extends Migration
             $table->bigIncrements('id');
             $table->string('day_name')->nullable();
             $table->date('date')->nullable();
-            $table->unsignedBigInteger('city_id')->index();
+            $table->unsignedBigInteger('city_id')->index()->nullable();
             $table->foreign('city_id')->references('id')
                 ->on('cities')->onDelete('cascade');
             $table->timestamps();
